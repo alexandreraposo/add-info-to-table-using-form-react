@@ -30,8 +30,26 @@ class Form extends React.Component {
         console.log(this.state.roles); 
     }
 
+    removeRow = (index) => {
+        this.state.roles.splice(index, 1);
+        this.setState({roles: this.state.roles});
+        console.log(this.state.roles);
+    }
+
     render() {
-        const myRow = this.state.roles.map(role => <tr><td>{role.tech}</td><td>{role.exp}</td><td><button type="submit">Delete</button></td></tr>)
+        const myRow = this.state.roles.map((role, index) => (
+            <tr>
+                <td>
+                    {role.tech}
+                </td>
+                <td>
+                    {role.exp}
+                </td>
+                <td>
+                    <button type="submit" onClick={() => this.removeRow(index)}>Delete</button>
+                </td>
+            </tr>
+            ))
         return(
             <div>
                 <form>

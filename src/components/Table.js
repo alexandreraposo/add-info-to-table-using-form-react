@@ -4,7 +4,7 @@ class Table extends React.Component {
     render() {
         return(
             <div>
-                <table>
+                <table border="1">
                     <thead>
                         <tr>
                             <th>
@@ -17,6 +17,7 @@ class Table extends React.Component {
                                 Delete
                             </th>
                         </tr>
+                        {this.props.myRow}
                     </thead>
                 </table>
           </div>

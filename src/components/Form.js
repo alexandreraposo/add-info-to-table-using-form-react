@@ -31,6 +31,7 @@ class Form extends React.Component {
     }
 
     render() {
+        const myRow = this.state.roles.map(role => <tr><td>{role.tech}</td><td>{role.exp}</td><td><button type="submit">Delete</button></td></tr>)
         return(
             <div>
                 <form>
@@ -44,10 +45,8 @@ class Form extends React.Component {
                     <br />
                     <button type="submit" onClick={this.onClick}>ADD</button>
                     <br />
-                    {
-                        this.state.roles.map(role => <tr><td>{role.tech}</td><td>{role.exp}</td></tr>)
-                    }
                 </form>
+                <Table myRow={myRow}/>
           </div>
         );
     }

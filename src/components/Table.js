@@ -1,10 +1,10 @@
 import React from 'react';
 
-class Table extends React.Component {
+export class Table extends React.Component {
     render() {
         return(
-            <div>
-                <table border="1">
+            <div className="container-table">
+                <table className="table">
                     <thead>
                         <tr>
                             <th>
@@ -24,5 +24,3 @@ class Table extends React.Component {
         );
     }
 }
-
-export default Table;

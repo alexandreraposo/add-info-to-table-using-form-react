@@ -22,84 +22,90 @@ export class App extends React.Component {
           msgTechExist: '',
           msgEmptyExp: ''
       };
-
   }
 
   onChange = (event) => {
-      /*let techExists = false;
+    
+    let roles = this.state.roles;
+    let technology = this.state.technology;
+    let name = event.target.name;
 
-      this.state.roles.forEach((element) => {
-          if (this.state.technology === element.tech) {
-              techExists = true;
-              console.log('true');
-          }
+    let techExists = false;
+
+    roles.forEach((element) => {
+      if (technology.toLowerCase() === element.tech.toLowerCase()) {
+        techExists = true;
+      }
+    });
+
+    if (techExists){
+      this.setState({
+        [name]: event.target.value,
+        msgEmptyTech: '',
+        msgTechExist: 'Essa tecnologia já se encontra registada!'
+        // NÃO ATUALIZA NO MOMENTO NÃO SEI PORQUÊ?????????
       });
-      if (techExists){
-          const state = Object.assign({}, this.state);
-          console.log(state);
-          const inp = event.target.name;
-          state[inp] = event.target.value;
-  
-          this.setState(state);
-        }else{
-          const state = Object.assign({}, this.state);
-          console.log(state);
-          const inp = event.target.name;
-          state[inp] = event.target.value;
-  
-          this.setState(state);
-          this.setState({msgEmptyTech: ''});
-          this.setState({msgTechExist: ''});
-        }*/
-
-        const state = Object.assign({}, this.state);
-          console.log(state);
-          const inp = event.target.name;
-          state[inp] = event.target.value;
-  
-          this.setState(state);
+    }else{
+      this.setState({
+        [name]: event.target.value,
+        msgEmptyTech: '',
+        msgTechExist: ''
+      });
+    }
   }
 
   onClick = (event) => {
-      event.preventDefault();
+    event.preventDefault();
+    let roles = this.state.roles;
+    let technology = this.state.technology;
+    let experience = this.state.experience;
 
-      let techExists = false;
+    let techExists = false;
 
-      this.state.roles.forEach((element) => {
-          if (this.state.technology === element.tech) {
-              techExists = true;
-              console.log('true');
-          }
+    roles.forEach((element) => {
+      if (technology.toLowerCase() === element.tech.toLowerCase()) {
+        techExists = true;
+      }
+    });
+
+    if (technology === '' && experience === ''){
+      this.setState({
+        msgEmptyTech: '',
+        msgEmptyExp: '',
+        msgEmpty: 'É obrigatório introduzir uma tecnologia e a sua experiência!'
+      });
+    }else if(technology === ''){
+      this.setState({
+        msgEmpty: '',
+        msgEmptyExp: '',
+        msgEmptyTech: 'É obrigatório introduzir uma tecnologia!'
+      });
+    }else if (techExists){
+      this.setState({
+        msgEmptyExp: ''
+      });
+    }else if(experience === ''){
+      this.setState({
+        msgEmpty: '',
+        msgEmptyTech: '',
+        msgEmptyExp: 'É obrigatório introduzir a sua experiência!'
+      });
+    }else if(!techExists){
+
+      roles.push({tech: technology, exp: experience});
+
+      this.setState({
+        roles: roles,
+        technology: '',
+        experience: '',
+        msgEmpty: '',
+        msgEmptyTech: '',
+        msgEmptyExp: ''
       });
 
-      if (this.state.technology === '' && this.state.experience === ''){
-          this.setState({msgEmptyTech: ''});
-          this.setState({msgEmptyExp: ''});
-          this.setState({msgEmpty: 'É obrigatório introduzir uma tecnologia e a sua experiência!'});
-        }else if(this.state.technology === ''){
-          this.setState({msgEmpty: ''});
-          this.setState({msgEmptyExp: ''});
-          this.setState({msgEmptyTech: 'É obrigatório introduzir uma tecnologia!'});
-        }else if (techExists){
-          this.setState({msgEmptyExp: ''});
-        }else if(this.state.experience === ''){
-          this.setState({msgEmpty: ''});
-          this.setState({msgEmptyTech: ''});
-          this.setState({msgEmptyExp: 'É obrigatório introduzir a sua experiência!'});
-        }else if(!techExists){
-          this.setState({msgEmpty: ''});
-          this.setState({msgEmptyTech: ''});
-          this.setState({msgEmptyExp: ''});
-          
-          const technology = this.state.technology;
-          const experience = this.state.experience;
-          this.state.roles.push({tech: technology, exp: experience});
-          this.setState({ roles: this.state.roles });
-          console.log(this.state.roles);
+      console.log(this.state.roles);
 
-          this.setState({technology: ''});
-          this.setState({experience: ''});
-        }
+    }
   }
 
   removeRow = (index) => {

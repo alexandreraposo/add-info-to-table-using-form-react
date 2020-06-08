@@ -64,7 +64,7 @@ input {
   box-sizing: border-box;
 }
 
-#btn-addInfo{
+#btn-addInfo {
   width: 50%;
   background: #2f4f4f;
   color: white;
@@ -73,6 +73,10 @@ input {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+
+#btn-addInfo:hover {
+  background: #416e6e;
 }
 
 #btn-removeInfo {

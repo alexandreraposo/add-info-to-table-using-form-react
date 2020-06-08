@@ -11,17 +11,17 @@ import './style.css'
 
 export class App extends React.Component {
   constructor(props){
-      super(props);
+    super(props);
 
-      this.state = {
-          technology: '',
-          experience: '',
-          roles: [],
-          msgEmpty: '',
-          msgEmptyTech: '',
-          msgTechExist: '',
-          msgEmptyExp: ''
-      };
+    this.state = {
+      technology: '',
+      experience: '',
+      roles: [],
+      msgEmpty: '',
+      msgEmptyTech: '',
+      msgTechExist: '',
+      msgEmptyExp: ''
+    };
   }
 
   onChange = (event) => {
@@ -42,14 +42,16 @@ export class App extends React.Component {
       this.setState({
         [name]: event.target.value,
         msgEmptyTech: '',
-        msgTechExist: 'Essa tecnologia já se encontra registada!'
+        msgTechExist: 'Essa tecnologia já se encontra registada!',
+        roles: roles
         // NÃO ATUALIZA NO MOMENTO NÃO SEI PORQUÊ?????????
       });
     }else{
       this.setState({
         [name]: event.target.value,
         msgEmptyTech: '',
-        msgTechExist: ''
+        msgTechExist: '',
+        roles: roles
       });
     }
   }
@@ -116,7 +118,7 @@ export class App extends React.Component {
 
   render() {
       const myRow = this.state.roles.map((role, index) => (
-          <tr>
+          <tr key={role.tech}>
               <td>
                   {role.tech}
               </td>

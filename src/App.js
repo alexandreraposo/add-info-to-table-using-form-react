@@ -6,6 +6,7 @@ import { MsgEmptyTech } from './components/MsgEmptyTech';
 import { MsgTechExist } from './components/MsgTechExist';
 import { MsgEmptyExp } from './components/MsgEmptyExp';
 import { Footer } from './components/Footer';
+import { PopUpDelete } from './components/PopUpDelete';
 
 import './style.css'
 
@@ -20,7 +21,8 @@ export class App extends React.Component {
       msgEmpty: '',
       msgEmptyTech: '',
       msgTechExist: '',
-      msgEmptyExp: ''
+      msgEmptyExp: '',
+      visible: false
     };
   }
 
@@ -110,10 +112,23 @@ export class App extends React.Component {
     }
   }
 
-  removeRow = (index) => {
+  /*removeRow = (index) => {
       this.state.roles.splice(index, 1);
       this.setState({roles: this.state.roles});
       console.log(this.state.roles);
+  }*/
+
+  popUpDelete = (index) => {
+    console.log(index);
+    if(this.state.visible === false){
+      this.setState({
+        visible: true
+      });
+    } else {
+      this.setState({
+        visible: false
+      });
+    }
   }
 
   render() {
@@ -126,7 +141,7 @@ export class App extends React.Component {
                   {role.exp}
               </td>
               <td>
-                  <button id="btn-removeInfo" type="submit" onClick={() => this.removeRow(index)}>Delete</button>
+                  <button id="btn-removeInfo" type="submit" onClick={() => this.popUpDelete(index)}>Delete</button>
               </td>
           </tr>
           ))
@@ -152,6 +167,7 @@ export class App extends React.Component {
               </div>
               <Table myRow={myRow}/>
               <Footer />
+              {!this.state.visible ? null : <PopUpDelete  popUpDelete={this.popUpDelete}/>}
         </div>
       );
   }

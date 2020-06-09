@@ -168,9 +168,10 @@ input {
   position: fixed;
   top: 0;
   left: 0;
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: center;
+  animation: anim .4s;
 }
 
 .pop-up-delete {
@@ -197,10 +198,6 @@ input {
   }
 }
 
-.show .pop-up-delete {
-  animation: anim .4s;
-}
-
 .close {
   position: absolute;
   top: -25px;
@@ -215,12 +212,9 @@ input {
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, .3);
 }
 
-.pop-up-container.show {
-  display: flex;
-}
-
-#btn-delete {
+.btn-delete {
   width: 15% auto;
+  margin-right: 0.5%;
   background: red;
   color: white;
   padding: 14px 20px;
@@ -229,11 +223,11 @@ input {
   cursor: pointer;
 }
 
-#btn-delete:hover {
+.btn-delete:hover {
   background-color: #FF6666;
 }
 
-#btn-cancel:hover {
+.btn-cancel:hover {
   background-color: #404040;
 }
 
@@ -241,8 +235,9 @@ input {
   background-color: #404040;
 }
 
-#btn-cancel {
+.btn-cancel {
   width: 15% auto;
+  margin-left: 0.5%;
   background: black;
   color: white;
   padding: 14px 20px;

@@ -118,8 +118,23 @@ export class App extends React.Component {
       console.log(this.state.roles);
   }*/
 
-  popUpDelete = (index) => {
+  removePopUpDelete = (index) => {
     console.log(index);
+    if(this.state.visible === false){
+      this.setState({
+        visible: true
+      });
+    } else {
+      this.state.roles.splice(index, 1); //HELP ME PLEASE: NÃO REMOVE O INDEX CERTO NÃO SEI PORQUÊ???
+      this.setState({
+        roles: this.state.roles,
+        visible: false
+      });
+      console.log(this.state.roles);
+    }
+  }
+
+  closePopUpDelete = () => {
     if(this.state.visible === false){
       this.setState({
         visible: true
@@ -141,7 +156,7 @@ export class App extends React.Component {
                   {role.exp}
               </td>
               <td>
-                  <button id="btn-removeInfo" type="submit" onClick={() => this.popUpDelete(index)}>Delete</button>
+                  <button id="btn-removeInfo" type="submit" onClick={() => this.removePopUpDelete(index)}>Delete</button>
               </td>
           </tr>
           ))
@@ -167,7 +182,7 @@ export class App extends React.Component {
               </div>
               <Table myRow={myRow}/>
               <Footer />
-              {!this.state.visible ? null : <PopUpDelete  popUpDelete={this.popUpDelete}/>}
+              {!this.state.visible ? null : <PopUpDelete  removePopUpDelete={this.removePopUpDelete} closePopUpDelete={this.closePopUpDelete} />}
         </div>
       );
   }

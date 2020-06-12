@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Header } from './components/Header';
 import { Table } from './components/Table';
 import { MsgEmpty } from './components/MsgEmpty';
@@ -10,182 +10,138 @@ import { PopUpDelete } from './components/PopUpDelete';
 
 import './style.css'
 
-export class App extends React.Component {
-  constructor(props){
-    super(props);
+export const App = () => {
 
-    this.state = {
-      technology: '',
-      experience: '',
-      roles: [],
-      msgEmpty: '',
-      msgEmptyTech: '',
-      msgTechExist: '',
-      msgEmptyExp: '',
-      visible: false
-    };
-  }
+  const [inputValues, setInputValues] = useState({technology: '', experience: ''});
+  const [roles, setRoles] = useState([]);
+  const [msgEmpty, setMsgEmpty] = useState('');
+  const [msgEmptyTech, setMsgEmptyTech] = useState('');
+  const [msgTechExist, setMsgTechExist] = useState('');
+  const [msgEmptyExp, setMsgEmptyExp] = useState('');
+  const [visible, setVisible] = useState(false);
 
-  onChange = (event) => {
-    
-    let roles = this.state.roles;
-    let technology = this.state.technology;
-    let name = event.target.name;
-
+  const onChange = event => {
+    const { name, value } = event.target;
+  
     let techExists = false;
 
     roles.forEach((element) => {
-      if (technology.toLowerCase() === element.tech.toLowerCase()) {
+      if (inputValues.technology.toLowerCase() === element.tech.toLowerCase()) {
         techExists = true;
       }
     });
 
     if (techExists){
-      this.setState({
-        [name]: event.target.value,
-        msgEmptyTech: '',
-        msgTechExist: 'Essa tecnologia já se encontra registada!',
-        roles: roles
-        // NÃO ATUALIZA NO MOMENTO NÃO SEI PORQUÊ?????????
-      });
+      setInputValues({ ...inputValues, [name]: value });
+      setMsgEmptyTech('');
+      setMsgTechExist('Essa tecnologia já se encontra registada!');
     }else{
-      this.setState({
-        [name]: event.target.value,
-        msgEmptyTech: '',
-        msgTechExist: '',
-        roles: roles
-      });
+      setInputValues({ ...inputValues, [name]: value });
+      setMsgEmptyTech('');
+      setMsgTechExist('');
     }
-  }
+  };
 
-  onClick = (event) => {
+  const onClick = event => {
     event.preventDefault();
-    let roles = this.state.roles;
-    let technology = this.state.technology;
-    let experience = this.state.experience;
 
     let techExists = false;
 
     roles.forEach((element) => {
-      if (technology.toLowerCase() === element.tech.toLowerCase()) {
+      if (inputValues.technology.toLowerCase() === element.tech.toLowerCase()) {
         techExists = true;
       }
     });
 
-    if (technology === '' && experience === ''){
-      this.setState({
-        msgEmptyTech: '',
-        msgEmptyExp: '',
-        msgEmpty: 'É obrigatório introduzir uma tecnologia e a sua experiência!'
-      });
-    }else if(technology === ''){
-      this.setState({
-        msgEmpty: '',
-        msgEmptyExp: '',
-        msgEmptyTech: 'É obrigatório introduzir uma tecnologia!'
-      });
+    if (inputValues.technology === '' && inputValues.experience === ''){
+      setMsgEmptyTech('');
+      setMsgEmptyExp('');
+      setMsgEmpty('É obrigatório introduzir uma tecnologia e a sua experiência!');
+    }else if(inputValues.technology === ''){
+      setMsgEmpty('');
+      setMsgEmptyExp('');
+      setMsgEmptyTech('É obrigatório introduzir uma tecnologia!');
     }else if (techExists){
-      this.setState({
-        msgEmptyExp: ''
-      });
-    }else if(experience === ''){
-      this.setState({
-        msgEmpty: '',
-        msgEmptyTech: '',
-        msgEmptyExp: 'É obrigatório introduzir a sua experiência!'
-      });
+      setMsgEmptyExp('');
+    }else if(inputValues.experience === ''){
+      setMsgEmpty('');
+      setMsgEmptyTech('');
+      setMsgEmptyExp('É obrigatório introduzir a sua experiência!');
     }else if(!techExists){
-
-      roles.push({tech: technology, exp: experience});
-
-      this.setState({
-        roles: roles,
-        technology: '',
-        experience: '',
-        msgEmpty: '',
-        msgEmptyTech: '',
-        msgEmptyExp: ''
-      });
-
-      console.log(this.state.roles);
-
+      roles.push({tech: inputValues.technology, exp: inputValues.experience});
+      setRoles(roles);
+      setInputValues({technology: '', experience: ''});
+      setMsgEmpty('');
+      setMsgEmptyTech('');
+      setMsgEmptyExp('');
+      console.log(roles);
     }
-  }
+  };
 
-  /*removeRow = (index) => {
-      this.state.roles.splice(index, 1);
-      this.setState({roles: this.state.roles});
-      console.log(this.state.roles);
-  }*/
-
-  removePopUpDelete = (index) => {
+  /*const removeRow = (index) => {
+      roles.splice(index, 1);
+      setRoles(roles);
+      console.log(roles);
+  };*/
+  
+  const removePopUpDelete = (index) => {
     console.log(index);
-    if(this.state.visible === false){
-      this.setState({
-        visible: true
-      });
+    if(visible === false){
+      setVisible(true);
     } else {
-      this.state.roles.splice(index, 1); //HELP ME PLEASE: NÃO REMOVE O INDEX CERTO NÃO SEI PORQUÊ???
-      this.setState({
-        roles: this.state.roles,
-        visible: false
-      });
-      console.log(this.state.roles);
+      roles.splice(index, 1); //HELP ME PLEASE: NÃO REMOVE O INDEX CERTO NÃO SEI PORQUÊ???
+      setRoles(roles);
+      setVisible(false);
+      console.log(roles);
     }
-  }
+  };
 
-  closePopUpDelete = () => {
-    if(this.state.visible === false){
-      this.setState({
-        visible: true
-      });
+  const closePopUpDelete = () => {
+    if(visible === false){
+      setVisible(true);
     } else {
-      this.setState({
-        visible: false
-      });
+      setVisible(false);
     }
-  }
+  };
 
-  render() {
-      const myRow = this.state.roles.map((role, index) => (
-          <tr key={role.tech}>
-              <td>
-                  {role.tech}
-              </td>
-              <td>
-                  {role.exp}
-              </td>
-              <td>
-                  <button id="btn-removeInfo" type="submit" onClick={() => this.removePopUpDelete(index)}>Delete</button>
-              </td>
-          </tr>
-          ))
+  const myRow = roles.map((role, index) => (
+    <tr key={role.tech}>
+      <td>
+        {role.tech}
+      </td>
+      <td>
+        {role.exp}
+      </td>
+      <td>
+        <button id="btn-removeInfo" type="submit" onClick={() => removePopUpDelete(index)}>Delete</button>
+      </td>
+    </tr>
+    ));
       return(
         <div className="container-grid">
           <Header />
           <div className="container-form">
                   <form>
-                      <MsgEmpty msgEmpty={this.state.msgEmpty} />
+                      <MsgEmpty msgEmpty={msgEmpty} />
                       <label htmlFor="technology">Tecnologia:</label>
                       <br />
-                      <input name="technology" type="text" value={this.state.technology} onChange={this.onChange} />
-                      <MsgEmptyTech msgEmptyTech={this.state.msgEmptyTech} />
-                      <MsgTechExist msgTechExist={this.state.msgTechExist} />
+                      <input name="technology" type="text" value={inputValues.technology} onChange={onChange} />
+                      <MsgEmptyTech msgEmptyTech={msgEmptyTech} />
+                      <MsgTechExist msgTechExist={msgTechExist} />
                       <label htmlFor="experience">Experiência:</label>
                       <br />
-                      <input name="experience" type="text" value={this.state.experience} onChange={this.onChange} />
-                      <MsgEmptyExp msgEmptyExp={this.state.msgEmptyExp} />
+                      <input name="experience" type="text" value={inputValues.experience} onChange={onChange} />
+                      <MsgEmptyExp msgEmptyExp={msgEmptyExp} />
                       <br />
-                      <button id="btn-addInfo" type="submit" onClick={this.onClick}>ADD</button>
+                      <button id="btn-addInfo" type="submit" onClick={onClick}>ADD</button>
                       <br />
                   </form>
               </div>
-              <Table myRow={myRow}/>
+              <Table myRow={myRow} />
               <Footer />
-              {!this.state.visible ? null : <PopUpDelete  removePopUpDelete={this.removePopUpDelete} closePopUpDelete={this.closePopUpDelete} />}
+              {!visible ? null : <PopUpDelete  removePopUpDelete={removePopUpDelete} closePopUpDelete={closePopUpDelete} />}
         </div>
       );
-  }
-}
+    };
 
 

@@ -1,7 +1,5 @@
 import React from 'react';
 
-export class MsgEmptyExp extends React.Component {
-    render() {
-        return <p className="msg-empty-experience">{this.props.msgEmptyExp}</p>
-    }
-}
+export const MsgEmptyExp = (props) => {
+    return <p className="msg-empty-experience">{props.msgEmptyExp}</p>;
+};

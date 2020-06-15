@@ -6,18 +6,12 @@ export const Table = (props) => {
             <table className="table">
                 <thead>
                     <tr>
-                        <th>
-                            Tecnologia
-                        </th>
-                        <th>
-                            Experiência
-                        </th>
-                        <th>
-                            Delete
-                        </th>
+                        {props.myColumn}
                     </tr>
-                    {props.myRow}
                 </thead>
+                <tbody>
+                    {props.myRow}
+                </tbody>
             </table>
         </div>
     );

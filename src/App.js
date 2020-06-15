@@ -13,6 +13,7 @@ import './style.css'
 export const App = () => {
 
   const [inputValues, setInputValues] = useState({technology: '', experience: ''});
+  const [tableTitle, setTableTitle] = useState(['Tecnologia', 'Experiência', 'Delete']); // Lista de colunas da tabela
   const [roles, setRoles] = useState([]);
   const [msgEmpty, setMsgEmpty] = useState('');
   const [msgEmptyTech, setMsgEmptyTech] = useState('');
@@ -104,6 +105,12 @@ export const App = () => {
     }
   };
 
+  const myColumn = tableTitle.map((column) => (
+      <th key={column}>
+        {column}
+      </th>
+  ));
+
   const myRow = roles.map((role, index) => (
     <tr key={role.tech}>
       <td>
@@ -137,7 +144,7 @@ export const App = () => {
                       <br />
                   </form>
               </div>
-              <Table myRow={myRow} />
+              <Table myColumn={myColumn} myRow={myRow} />
               <Footer />
               {!visible ? null : <PopUpDelete  removePopUpDelete={removePopUpDelete} closePopUpDelete={closePopUpDelete} />}
         </div>

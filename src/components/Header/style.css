@@ -1,0 +1,12 @@
+.container-header {
+  grid-area: header;
+  align-self: start;
+  height: 80px;
+  background: linear-gradient(135deg, #2f4f4f, #416e6e);
+  color: white;
+  font-family: 'Baloo Paaji 2', cursive;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+}

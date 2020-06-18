@@ -1,5 +1,7 @@
 import React from 'react';
 
+import "./style.css";
+
 export const PopUpDelete = (props) => {
   return(
     <div className="pop-up-container">

@@ -1,0 +1,14 @@
+.btn-addInfo {
+  width: 50%;
+  background: #2f4f4f;
+  color: white;
+  padding: 14px 20px;
+  margin-left: 25%;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-addInfo:hover {
+  background: #416e6e;
+}

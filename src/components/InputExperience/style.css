@@ -1,0 +1,14 @@
+.label-exp {
+  margin-left: 12.5%;
+  font-family: 'Baloo Paaji 2', cursive;
+}
+
+.input-exp {
+  width: 80%;
+  padding: 12px 20px;
+  margin-top: 8px;
+  margin-left: 12.5%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}

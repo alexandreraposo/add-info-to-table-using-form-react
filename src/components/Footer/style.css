@@ -1,0 +1,9 @@
+#container-footer {
+  grid-area: footer;
+  align-self: end;
+  height: 75px;
+	width     : auto;
+	background: rgb(104, 104, 104);
+	text-align: center;
+	padding   : 1px;
+}

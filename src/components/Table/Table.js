@@ -1,6 +1,6 @@
 import React from 'react';
 
-import "./style.css";
+import "./Table.css";
 
 export const Table = (props) => {
     const myColumn = props.tableColumn.map((column) => <th key={column}>{column}</th>);
@@ -13,7 +13,7 @@ export const Table = (props) => {
             <button
               className="btn-removeInfo"
               type="submit"
-              onClick={() => props.removePopUpDelete(index)}
+              onClick={() => props.openPopUpDelete(index)}
             >
               Delete
             </button>

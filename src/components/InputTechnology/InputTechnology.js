@@ -1,6 +1,6 @@
 import React from 'react';
 
-import "./style.css";
+import "./InputTechnology.css";
 
 export const InputTechnology = (props) => {
     return(

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import "./style.css";
+import "./MsgValidation.css";
 
 export const MsgValidation = (props) => {
     return (

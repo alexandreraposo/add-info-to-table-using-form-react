@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Header } from "./components/Header/Header";
 import { InputTechnology } from "./components/InputTechnology/InputTechnology";
 import { InputExperience } from "./components/InputExperience/InputExperience";
@@ -8,7 +8,7 @@ import { MsgValidation } from "./components/MsgValidation/MsgValidation";
 import { Footer } from "./components/Footer/Footer";
 import { PopUpDelete } from "./components/PopUpDelete/PopUpDelete";
 
-import "./style.css";
+import "./App.css";
 
 export const App = () => {
   const [inputValues, setInputValues] = useState({
@@ -28,9 +28,7 @@ export const App = () => {
   const [msgEmptyExp, setMsgEmptyExp] = useState("");
   const [visible, setVisible] = useState(false);
 
-  const onChange = (event) => {
-    const { name, value } = event.target;
-
+  useEffect(() => {
     let techExists = false;
 
     roles.forEach((element) => {
@@ -40,14 +38,17 @@ export const App = () => {
     });
 
     if (techExists) {
-      setInputValues({ ...inputValues, [name]: value });
       setMsgEmptyTech("");
       setMsgTechExist("Essa tecnologia já se encontra registada!");
     } else {
-      setInputValues({ ...inputValues, [name]: value });
       setMsgEmptyTech("");
       setMsgTechExist("");
     }
+  }, [inputValues]);
+
+  const onChange = (event) => {
+    const { name, value } = event.target;
+    setInputValues({ ...inputValues, [name]: value });
   };
 
   const onClick = (event) => {
@@ -88,20 +89,20 @@ export const App = () => {
     }
   };
   
-  //Desta forma já funciona.
-  //Supostamente agora já estou a passar o index, mas mesmo assim ainda é imprimido no console.log um evento com várias informações.
-  //É normal, ou dá para fazer de outra maneira???
-  const removePopUpDelete = (index) => {
-    console.log(index);
-    setRowIndex(index);
+  const openPopUpDelete = (index) => {
     if (visible === false) {
+      setRowIndex(index);
       setVisible(true);
-    } else {
-      roles.splice(rowIndex, 1);
-      setRowIndex(null);
-      setVisible(false);
+      console.log(index);
     }
   };
+
+  const removePopUpDelete = () => {
+    if (visible)
+    roles.splice(rowIndex, 1);
+    setRowIndex(null);
+    setVisible(false);
+  }
 
   const closePopUpDelete = () => {
     if (visible === false) {
@@ -127,7 +128,7 @@ export const App = () => {
           <br />
         </form>
       </div>
-      <Table tableColumn={tableColumn} roles={roles} removePopUpDelete={removePopUpDelete} />
+      <Table tableColumn={tableColumn} roles={roles} openPopUpDelete={openPopUpDelete} />
       <Footer />
       {visible && (
         <PopUpDelete

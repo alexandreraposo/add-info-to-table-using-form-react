@@ -1,6 +1,6 @@
 import React from 'react';
 
-import "./style.css";
+import "./PopUpDelete.css";
 
 export const PopUpDelete = (props) => {
   return(

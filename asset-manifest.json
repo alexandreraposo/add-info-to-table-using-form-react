@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/add-info-to-table-using-form-react/static/css/main.c5117ac6.chunk.css",
+    "main.js": "/add-info-to-table-using-form-react/static/js/main.56efb876.chunk.js",
+    "main.js.map": "/add-info-to-table-using-form-react/static/js/main.56efb876.chunk.js.map",
+    "runtime-main.js": "/add-info-to-table-using-form-react/static/js/runtime-main.e36794d3.js",
+    "runtime-main.js.map": "/add-info-to-table-using-form-react/static/js/runtime-main.e36794d3.js.map",
+    "static/js/2.7566af9f.chunk.js": "/add-info-to-table-using-form-react/static/js/2.7566af9f.chunk.js",
+    "static/js/2.7566af9f.chunk.js.map": "/add-info-to-table-using-form-react/static/js/2.7566af9f.chunk.js.map",
+    "index.html": "/add-info-to-table-using-form-react/index.html",
+    "precache-manifest.855d665f9deaf8f18378f794c28a1de7.js": "/add-info-to-table-using-form-react/precache-manifest.855d665f9deaf8f18378f794c28a1de7.js",
+    "service-worker.js": "/add-info-to-table-using-form-react/service-worker.js",
+    "static/css/main.c5117ac6.chunk.css.map": "/add-info-to-table-using-form-react/static/css/main.c5117ac6.chunk.css.map",
+    "static/js/2.7566af9f.chunk.js.LICENSE.txt": "/add-info-to-table-using-form-react/static/js/2.7566af9f.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e36794d3.js",
+    "static/js/2.7566af9f.chunk.js",
+    "static/css/main.c5117ac6.chunk.css",
+    "static/js/main.56efb876.chunk.js"
+  ]
+}
